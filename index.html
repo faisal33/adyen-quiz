@@ -799,7 +799,7 @@ function csvCell(v){ const s = String(v ?? ''); return /[",\n]/.test(s) ? `"${s.
 
 $('clearBtn').addEventListener('click', async () => {
   if (!confirm('⚠️ Delete ALL records from Airtable?\n\nThis CANNOT be undone.')) return;
-  if (!confirm('Are you absolutely sure? Type Yes in the next prompt to confirm.')) return;
+  if (!confirm('Are you absolutely sure? Type DELETE in the next prompt to confirm.')) return;
   const typed = prompt('Type DELETE to confirm:');
   if (typed !== 'DELETE') { alert('Cancelled.'); return; }
   try {
@@ -863,6 +863,7 @@ $('raffleCloseBtn').addEventListener('click', () => {
   $('raffleOverlay').classList.remove('show');
   $('adminOverlay').classList.add('show');
 });
+
 </script>
 </body>
 </html>
