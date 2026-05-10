@@ -339,7 +339,7 @@
         <p class="result-msg" id="resultMsg"></p>
         <div class="result-actions">
           <button class="btn btn-ghost" id="restartBtn">Take it again</button>
-          <button class="btn btn-primary" id="learnMoreBtn">Talk to Adyen →</button>
+          <button class="btn btn-primary" id="learnMoreBtn">Learn More →</button>
         </div>
       </div>
     </section>
@@ -683,10 +683,11 @@ $('restartBtn').addEventListener('click', () => {
   show('screen-welcome');
 });
 $('learnMoreBtn').addEventListener('click', () => {
-  // For demo: same as restart (a kiosk reset). Replace with link in production.
-  state = { name:"", email:"", idx:0, answers:[], score:0 };
-  $('name').value = ''; $('email').value = '';
-  show('screen-welcome');
+  window.open(
+    'https://www.adyen.com/knowledge-hub/turn-soccer-traffic-into-revenue',
+    '_blank',
+    'noopener,noreferrer'
+  );
 });
 
 /* ---------- ADMIN (tap logo 5x) ---------- */
