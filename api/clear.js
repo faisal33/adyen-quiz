@@ -1,3 +1,7 @@
+if (req.headers['x-admin-token'] !== process.env.ADMIN_TOKEN) {
+  return res.status(401).json({ error: 'Unauthorized' });
+}
+
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');

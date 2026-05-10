@@ -56,6 +56,26 @@
   .logo-svg{height:28px;width:auto;display:block}
   .topbar-meta{font-size:13px;color:var(--text-mute);font-weight:500;letter-spacing:0.02em;text-transform:uppercase}
 
+  .admin-link{
+  background:transparent;
+  border:1px solid var(--line);
+  color:var(--text-mute);
+  font-family:inherit;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  padding:8px 12px;
+  border-radius:999px;
+  cursor:pointer;
+}
+
+.admin-link:hover{
+  color:var(--text);
+  border-color:var(--line-strong);
+  background:rgba(255,255,255,0.04);
+}
+
   /* Screen container */
   .screens{flex:1;position:relative;overflow:hidden;min-height:0}
   .screen{
@@ -291,7 +311,10 @@
         <path fill="#00D16A" d="M76 76.138h31.724a6.343 6.343 0 0 1 6.345 6.345v31.724H82.345A6.343 6.343 0 0 1 76 107.862V92h15.862v12.69h6.345V85.655H76zM253.655 76.138v38.069h15.862V85.655h6.345v28.552h15.862V82.483a6.343 6.343 0 0 0-6.345-6.345zM164.828 130.069h31.724a6.343 6.343 0 0 0 6.345-6.345V76.138h-15.863v28.552h-6.344V76.138h-15.862v31.724a6.343 6.343 0 0 0 6.344 6.345h15.862v6.345h-22.206zM247.31 114.207h-31.724a6.343 6.343 0 0 1-6.345-6.345V76.138h31.725a6.343 6.343 0 0 1 6.344 6.345v15.862h-15.862v-12.69h-6.345v19.035h22.207zM158.483 60.276v53.931h-31.724a6.343 6.343 0 0 1-6.345-6.345v-25.38a6.343 6.343 0 0 1 6.345-6.344h9.517v28.552h6.345V60.276z"/>
       </svg>
     </div>
-    <div class="topbar-meta" id="topMeta">Adyen North</div>
+    <div style="display:flex;align-items:center;gap:16px">
+  <div class="topbar-meta" id="topMeta">Adyen North</div>
+  <button class="admin-link" id="adminBtn" type="button">Admin</button>
+</div>
   </div>
 
   <div class="screens">
@@ -722,6 +745,37 @@ $('logo').addEventListener('click', () => {
   }
 });
 
+/* ---------- ADMIN ---------- */
+
+$('adminBtn').addEventListener('click', async () => {
+  const passcode = prompt('Enter admin passcode:');
+  if (!passcode) return;
+
+  try {
+    const res = await fetch('/api/admin-login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ passcode })
+    });
+
+    if (!res.ok) {
+      alert('Incorrect passcode.');
+      return;
+    }
+
+    const data = await res.json();
+
+    // Store temporary admin token in this browser session only
+    sessionStorage.setItem('adminToken', data.token);
+
+    openAdmin();
+  } catch (e) {
+    alert('Could not verify admin passcode.');
+  }
+});
+
+
+
 async function openAdmin(){
   $('adminOverlay').classList.add('show');
   await loadSubs();
@@ -733,9 +787,12 @@ async function loadSubs(){
   list.innerHTML = '<div class="empty">Loading from Airtable…</div>';
   let rows = [];
   try {
-    const headers = {};
-    if (ENDPOINT.kioskKey) headers['X-Kiosk-Key'] = ENDPOINT.kioskKey;
-    const res = await fetch('/api/list', { headers });
+   const adminToken = sessionStorage.getItem('adminToken');
+
+const headers = {};
+if (adminToken) headers['X-Admin-Token'] = adminToken;
+
+const res = await fetch('/api/list', { headers });
     if (!res.ok) throw new Error('HTTP ' + res.status);
     const data = await res.json();
     rows = data.records || [];
