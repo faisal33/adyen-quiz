@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<title>Adyen · World Cup Ready Quiz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Familjen+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --adyen-green:#00D16A;
+    --adyen-green-dark:#00B057;
+    --adyen-green-soft:rgba(0,209,106,0.12);
+    --bg:#001222;
+    --bg-elev:#0A1B2C;
+    --bg-card:#10263A;
+    --line:rgba(255,255,255,0.08);
+    --line-strong:rgba(255,255,255,0.16);
+    --text:#F5F6F7;
+    --text-dim:#9BA8B5;
+    --text-mute:#6C7A88;
+    --danger:#FF5A5A;
+    --gold:#F5C046;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:'Manrope',system-ui,sans-serif;overflow:hidden;height:100%;width:100%;-webkit-font-smoothing:antialiased}
+  body{
+    background:
+      radial-gradient(1200px 600px at 80% -10%, rgba(0,209,106,0.18), transparent 60%),
+      radial-gradient(900px 500px at -10% 110%, rgba(0,209,106,0.10), transparent 60%),
+      var(--bg);
+    position:relative;
+  }
+  /* Subtle pitch lines */
+  body::before{
+    content:"";
+    position:fixed;inset:0;pointer-events:none;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size:80px 80px;
+    mask-image:radial-gradient(ellipse at center, black 40%, transparent 80%);
+  }
+  .app{position:fixed;inset:0;display:flex;flex-direction:column;overflow:hidden}
+
+  /* Top bar */
+  .topbar{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:24px 36px;flex-shrink:0;z-index:5;
+  }
+  .logo{display:flex;align-items:center;cursor:pointer;user-select:none;padding:4px 6px;margin:-4px -6px;border-radius:8px;transition:opacity .15s}
+  .logo:active{opacity:0.7}
+  .logo-svg{height:28px;width:auto;display:block}
+  .topbar-meta{font-size:13px;color:var(--text-mute);font-weight:500;letter-spacing:0.02em;text-transform:uppercase}
+
+  /* Screen container */
+  .screens{flex:1;position:relative;overflow:hidden;min-height:0}
+  .screen{
+    position:absolute;inset:0;
+    display:flex;flex-direction:column;align-items:center;
+    padding:24px 48px 48px;
+    opacity:0;visibility:hidden;transform:translateY(16px);
+    transition:opacity .45s ease,transform .45s ease,visibility .45s;
+    overflow-y:auto;
+    -webkit-overflow-scrolling:touch;
+  }
+  .screen.active{opacity:1;visibility:visible;transform:translateY(0)}
+  /* Single child with margin:auto centers when it fits, scrolls naturally when too tall */
+  .screen > .welcome-wrap,
+  .screen > .quiz-wrap,
+  .screen > .result-wrap{margin:auto 0}
+
+  /* WELCOME */
+  .welcome-wrap{max-width:780px;width:100%;text-align:center}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:8px 14px;border-radius:999px;
+    background:var(--adyen-green-soft);
+    color:var(--adyen-green);
+    font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;
+    border:1px solid rgba(0,209,106,0.25);
+  }
+  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--adyen-green);box-shadow:0 0 10px var(--adyen-green)}
+  h1.hero{
+    font-family:'Familjen Grotesk';
+    font-weight:700;
+    font-size:clamp(40px,6vw,68px);
+    line-height:1.02;letter-spacing:-0.025em;
+    margin:24px 0 16px;
+  }
+  h1.hero .accent{color:var(--adyen-green);font-style:italic;font-weight:600}
+  .lede{font-size:18px;line-height:1.5;color:var(--text-dim);max-width:560px;margin:0 auto 36px}
+
+  .form-card{
+    background:linear-gradient(180deg, rgba(27,30,35,0.9), rgba(21,23,27,0.9));
+    border:1px solid var(--line);
+    border-radius:24px;
+    padding:32px;
+    text-align:left;
+    backdrop-filter:blur(10px);
+  }
+  .field{margin-bottom:18px}
+  .field label{display:block;font-size:13px;font-weight:600;color:var(--text-dim);margin-bottom:8px;letter-spacing:0.02em}
+  .field input{
+    width:100%;padding:18px 20px;border-radius:14px;
+    background:var(--bg);border:1.5px solid var(--line);
+    color:var(--text);font-family:inherit;font-size:17px;font-weight:500;
+    transition:border-color .2s, background .2s;
+    outline:none;
+  }
+  .field input::placeholder{color:var(--text-mute)}
+  .field input:focus{border-color:var(--adyen-green);background:#000A14}
+  .field input.err{border-color:var(--danger)}
+  .field-err{font-size:12px;color:var(--danger);margin-top:6px;min-height:14px}
+
+  .btn{
+    -webkit-appearance:none;appearance:none;border:none;cursor:pointer;
+    font-family:inherit;font-weight:700;font-size:17px;
+    padding:20px 28px;border-radius:14px;
+    transition:transform .15s ease, background .2s, box-shadow .2s;
+    display:inline-flex;align-items:center;justify-content:center;gap:10px;
+    width:100%;
+  }
+  .btn:active{transform:scale(0.98)}
+  .btn-primary{
+    background:var(--adyen-green);color:#000;
+    box-shadow:0 6px 24px rgba(0,209,106,0.35), inset 0 1px 0 rgba(255,255,255,0.25);
+  }
+  .btn-primary:hover{background:#1AE07C}
+  .btn-ghost{
+    background:transparent;color:var(--text);
+    border:1.5px solid var(--line-strong);
+  }
+  .btn-ghost:hover{border-color:var(--text);background:rgba(255,255,255,0.04)}
+
+  .consent{font-size:12px;color:var(--text-mute);margin-top:14px;text-align:center;line-height:1.5}
+
+  /* QUIZ */
+  .quiz-wrap{max-width:760px;width:100%}
+  .progress{display:flex;align-items:center;gap:14px;margin-bottom:32px}
+  .progress-track{flex:1;height:6px;background:var(--bg-elev);border-radius:999px;overflow:hidden;border:1px solid var(--line)}
+  .progress-fill{height:100%;background:linear-gradient(90deg,var(--adyen-green),#34E07C);border-radius:999px;transition:width .5s cubic-bezier(.2,.8,.2,1)}
+  .progress-text{font-size:13px;color:var(--text-dim);font-weight:600;letter-spacing:0.04em;font-variant-numeric:tabular-nums}
+
+  .q-tag{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:6px 12px;border-radius:8px;
+    background:var(--bg-elev);border:1px solid var(--line);
+    color:var(--text-dim);font-size:12px;font-weight:600;
+    letter-spacing:0.08em;text-transform:uppercase;margin-bottom:18px;
+  }
+  .q-title{
+    font-family:'Familjen Grotesk';font-weight:600;
+    font-size:clamp(26px,3.4vw,36px);line-height:1.2;letter-spacing:-0.015em;
+    margin:0 0 12px;
+  }
+  .q-text{font-size:18px;line-height:1.5;color:var(--text-dim);margin:0 0 32px;max-width:640px}
+
+  .answers{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
+  .answer{
+    -webkit-appearance:none;appearance:none;cursor:pointer;
+    background:var(--bg-card);border:1.5px solid var(--line);
+    border-radius:18px;
+    padding:32px 24px;
+    color:var(--text);
+    font-family:inherit;font-weight:700;font-size:22px;
+    display:flex;align-items:center;justify-content:center;gap:12px;
+    transition:all .2s ease;
+    min-height:120px;
+  }
+  .answer:hover{border-color:var(--text-dim);transform:translateY(-2px)}
+  .answer:active{transform:scale(0.98)}
+  .answer .icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px}
+  .answer.yes .icon{background:var(--adyen-green-soft);color:var(--adyen-green)}
+  .answer.no .icon{background:rgba(255,90,90,0.12);color:var(--danger)}
+  .answer.yes:hover{border-color:var(--adyen-green);background:rgba(0,209,106,0.05)}
+  .answer.no:hover{border-color:var(--danger);background:rgba(255,90,90,0.04)}
+
+  /* IMPACT panel */
+  .impact{
+    background:linear-gradient(180deg, rgba(0,209,106,0.06), rgba(0,209,106,0.02));
+    border:1px solid rgba(0,209,106,0.25);
+    border-radius:18px;
+    padding:28px;
+    margin-bottom:24px;
+    opacity:0;transform:translateY(8px);
+    transition:opacity .35s ease, transform .35s ease;
+  }
+  .impact.show{opacity:1;transform:translateY(0)}
+  .impact-row{display:flex;gap:14px;margin-bottom:18px}
+  .impact-row:last-child{margin-bottom:0}
+  .impact-label{
+    flex-shrink:0;width:100px;
+    font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;
+    color:var(--adyen-green);padding-top:3px;
+  }
+  .impact-row:nth-child(2) .impact-label{color:var(--gold)}
+  .impact-text{flex:1;font-size:15px;line-height:1.55;color:var(--text)}
+  .impact-text strong{color:var(--text);font-weight:700;background:rgba(0,209,106,0.18);padding:1px 6px;border-radius:4px}
+
+  .answer-status{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:6px 12px;border-radius:8px;
+    font-size:12px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;
+    margin-bottom:18px;
+  }
+  .answer-status.yes{background:var(--adyen-green-soft);color:var(--adyen-green)}
+  .answer-status.no{background:rgba(255,90,90,0.12);color:var(--danger)}
+
+  /* RESULT */
+  .result-wrap{max-width:780px;width:100%;text-align:center}
+  .trophy{
+    width:120px;height:120px;border-radius:30px;
+    margin:0 auto 24px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:64px;
+    background:linear-gradient(135deg,var(--bg-card),var(--bg-elev));
+    border:1px solid var(--line-strong);
+    position:relative;
+  }
+  .trophy.win{background:linear-gradient(135deg, rgba(0,209,106,0.25), rgba(0,209,106,0.08));border-color:var(--adyen-green);box-shadow:0 0 60px rgba(0,209,106,0.4)}
+  .trophy.mid{background:linear-gradient(135deg, rgba(245,192,70,0.20), rgba(245,192,70,0.05));border-color:rgba(245,192,70,0.4)}
+  .trophy.low{background:linear-gradient(135deg, rgba(255,90,90,0.15), rgba(255,90,90,0.04));border-color:rgba(255,90,90,0.3)}
+
+  .score-label{font-size:13px;color:var(--text-mute);font-weight:600;letter-spacing:0.16em;text-transform:uppercase;margin-bottom:8px}
+  .score-num{font-family:'Familjen Grotesk';font-weight:700;font-size:clamp(56px,8vw,96px);line-height:1;letter-spacing:-0.03em;margin:0}
+  .score-num .total{color:var(--text-mute);font-weight:500}
+  .result-title{font-family:'Familjen Grotesk';font-weight:700;font-size:clamp(32px,4.5vw,48px);line-height:1.05;letter-spacing:-0.02em;margin:18px 0 14px}
+  .result-title.win{color:var(--adyen-green)}
+  .result-title.mid{color:var(--gold)}
+  .result-title.low{color:var(--danger)}
+  .result-msg{font-size:17px;line-height:1.6;color:var(--text-dim);max-width:560px;margin:0 auto 32px}
+
+  .result-actions{display:flex;gap:12px;max-width:480px;margin:0 auto}
+
+  /* Confetti */
+  .confetti{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+  .conf{position:absolute;width:10px;height:14px;top:-20px;animation:fall linear forwards}
+  @keyframes fall{
+    0%{transform:translateY(0) rotate(0)}
+    100%{transform:translateY(110vh) rotate(720deg)}
+  }
+
+  /* Admin */
+  .admin-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);backdrop-filter:blur(4px);z-index:100;display:none;align-items:center;justify-content:center;padding:24px}
+  .admin-overlay.show{display:flex}
+  .admin-panel{
+    background:var(--bg-card);border:1px solid var(--line-strong);
+    border-radius:20px;padding:24px;max-width:760px;width:100%;max-height:80vh;display:flex;flex-direction:column;
+  }
+  .admin-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+  .admin-title{font-family:'Familjen Grotesk';font-size:22px;font-weight:700;margin:0}
+  .admin-close{background:transparent;border:none;color:var(--text-dim);font-size:24px;cursor:pointer;padding:6px 10px;border-radius:8px}
+  .admin-close:hover{background:var(--bg-elev);color:var(--text)}
+  .admin-list{flex:1;overflow-y:auto;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:16px}
+  .sub-row{padding:14px 4px;border-bottom:1px solid var(--line);display:grid;grid-template-columns:1.4fr 2fr 1fr 0.8fr;gap:12px;align-items:center;font-size:14px}
+  .sub-row:last-child{border-bottom:none}
+  .sub-row .name{font-weight:600}
+  .sub-row .email{color:var(--text-dim);font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .sub-row .score{font-weight:700;font-variant-numeric:tabular-nums}
+  .sub-row .time{color:var(--text-mute);font-size:12px;text-align:right}
+  .admin-actions{display:flex;gap:10px}
+  .admin-actions .btn{flex:1;padding:14px;font-size:14px}
+  .empty{text-align:center;color:var(--text-mute);padding:40px 20px;font-size:14px}
+
+  /* Adjustments for landscape iPad */
+  @media (min-width:1024px){
+    .screen{padding:32px 64px 64px}
+  }
+  @media (max-width:520px){
+    .answers{grid-template-columns:1fr}
+    .topbar{padding:16px 20px}
+    .screen{padding:16px 20px 32px}
+    .form-card{padding:24px}
+    .impact-row{flex-direction:column;gap:6px}
+    .impact-label{width:auto}
+    .sub-row{grid-template-columns:1fr 1fr;font-size:13px}
+    .sub-row .time{display:none}
+  }
+</style>
+</head>
+<body>
+<div class="app">
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="logo" id="logo" title="Adyen" role="img" aria-label="Adyen">
+      <svg class="logo-svg" viewBox="70 55 226 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path fill="#00D16A" d="M76 76.138h31.724a6.343 6.343 0 0 1 6.345 6.345v31.724H82.345A6.343 6.343 0 0 1 76 107.862V92h15.862v12.69h6.345V85.655H76zM253.655 76.138v38.069h15.862V85.655h6.345v28.552h15.862V82.483a6.343 6.343 0 0 0-6.345-6.345zM164.828 130.069h31.724a6.343 6.343 0 0 0 6.345-6.345V76.138h-15.863v28.552h-6.344V76.138h-15.862v31.724a6.343 6.343 0 0 0 6.344 6.345h15.862v6.345h-22.206zM247.31 114.207h-31.724a6.343 6.343 0 0 1-6.345-6.345V76.138h31.725a6.343 6.343 0 0 1 6.344 6.345v15.862h-15.862v-12.69h-6.345v19.035h22.207zM158.483 60.276v53.931h-31.724a6.343 6.343 0 0 1-6.345-6.345v-25.38a6.343 6.343 0 0 1 6.345-6.344h9.517v28.552h6.345V60.276z"/>
+      </svg>
+    </div>
+    <div class="topbar-meta" id="topMeta">Canada Annual · 2026</div>
+  </div>
+
+  <div class="screens">
+
+    <!-- WELCOME -->
+    <section class="screen active" id="screen-welcome">
+      <div class="welcome-wrap">
+        <span class="eyebrow"><span class="dot"></span> World Cup 2026 Readiness</span>
+        <h1 class="hero">Are you ready for the <span class="accent">global soccer surge?</span></h1>
+        <p class="lede">A 5-question diagnostic to see if your business is set up to turn stadium traffic into high-value revenue. Takes about a minute.</p>
+        <div class="form-card">
+          <div class="field">
+            <label for="name">Your name</label>
+            <input id="name" type="text" autocomplete="name" placeholder="Jane Doe" />
+            <div class="field-err" id="err-name"></div>
+          </div>
+          <div class="field">
+            <label for="email">Work email</label>
+            <input id="email" type="email" autocomplete="email" placeholder="jane@company.com" />
+            <div class="field-err" id="err-email"></div>
+          </div>
+          <button class="btn btn-primary" id="startBtn">Start the quiz →</button>
+          <div class="consent">By starting, you agree Adyen may follow up about your results.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUIZ -->
+    <section class="screen" id="screen-quiz">
+      <div class="quiz-wrap">
+        <div class="progress">
+          <div class="progress-track"><div class="progress-fill" id="progFill"></div></div>
+          <div class="progress-text" id="progText">1 / 5</div>
+        </div>
+        <div id="qContent"></div>
+      </div>
+    </section>
+
+    <!-- RESULT -->
+    <section class="screen" id="screen-result">
+      <div class="result-wrap">
+        <div class="trophy" id="trophy">🏆</div>
+        <div class="score-label">Your score</div>
+        <div class="score-num"><span id="scoreNum">0</span><span class="total"> / 5</span></div>
+        <h2 class="result-title" id="resultTitle">Match Winner!</h2>
+        <p class="result-msg" id="resultMsg"></p>
+        <div class="result-actions">
+          <button class="btn btn-ghost" id="restartBtn">Take it again</button>
+          <button class="btn btn-primary" id="learnMoreBtn">Talk to Adyen →</button>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<!-- ADMIN -->
+<div class="admin-overlay" id="adminOverlay">
+  <div class="admin-panel">
+    <div class="admin-head">
+      <h3 class="admin-title">Quiz submissions <span id="subCount" style="color:var(--text-mute);font-weight:500;font-size:14px;margin-left:8px"></span></h3>
+      <button class="admin-close" id="adminClose">✕</button>
+    </div>
+    <div class="admin-list" id="adminList"></div>
+    <div class="admin-actions">
+      <button class="btn btn-ghost" id="exportBtn">Export CSV</button>
+      <button class="btn btn-ghost" id="clearBtn" style="border-color:rgba(255,90,90,0.3);color:var(--danger)">Clear all</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   BACKEND ENDPOINT CONFIG
+   ============================================================
+   This frontend POSTs to a serverless function which holds the
+   Airtable token securely. Deploy `api/submit.js` (Vercel) or
+   `netlify/functions/submit.js` (Netlify) — see SETUP-GUIDE.md.
+
+   `url`       — path to your function. Default '/api/submit'
+                 works on both Vercel and Netlify (the netlify.toml
+                 redirect is included). Use a full URL if you host
+                 the HTML separately from the function.
+
+   `kioskKey`  — optional shared secret. If you set the KIOSK_KEY
+                 env var on the server, paste the same value here.
+                 Adds a small barrier against random POSTs.
+   ============================================================ */
+const ENDPOINT = {
+  url:      '/api/submit',
+  kioskKey: ''
+};
+/* ============================================================ */
+
+/* ---------- DATA ---------- */
+const QUESTIONS = [
+  {
+    tag: "Test 1 of 5 · Super-Spender",
+    title: "Local vs. Global payment schemes",
+    text: "Have you integrated local payment schemes like China UnionPay (CUP) and Japan Credit Bureau (JCB) into your checkout?",
+    impact: "International visitors spend <strong>70% more</strong> per purchase than locals on apparel. Asian \"super-spenders\" average <strong>$306.40 per transaction</strong> — nearly $188 higher than Europeans.",
+    why: "If your terminal can't process these schemes, you risk losing the highest-margin luxury sales from the most lucrative fan segments."
+  },
+  {
+    tag: "Test 2 of 5 · Price Certainty",
+    title: "Dynamic Currency Conversion (DCC)",
+    text: "Does your payment terminal offer Dynamic Currency Conversion so fans can see the price in their home currency instantly?",
+    impact: "Travelers — especially in the back of a cab or a busy store — hate doing mental math.",
+    why: "DCC turns <strong>browsers into buyers</strong> by providing instant price certainty, removing hesitation and creating a frictionless experience for high-value international shoppers."
+  },
+  {
+    tag: "Test 3 of 5 · Scramble",
+    title: "Booking flexibility under pressure",
+    text: "Can your booking system handle a sudden 40% spike in flexible, last-minute cancellations or changes as fans follow the tournament bracket?",
+    impact: "Demand follows the bracket, not the calendar. A surprise match result can lead to thousands of fans trying to re-book flights or hotels simultaneously.",
+    why: "The merchant who wins the transaction is the one who offers the <strong>least resistance</strong>. Treating payments as part of the logistics stack is essential to capture this volatile revenue."
+  },
+  {
+    tag: "Test 4 of 5 · Downtime Economy",
+    title: "Mobile-first speed",
+    text: "Is your checkout optimized for one-tap mobile payments and fast, same-day digital bookings?",
+    impact: "Between matches, fans spend significantly more on dining and experiences — tourists spend <strong>$10 more per meal</strong> than locals — and most of that is spontaneous, mobile-led.",
+    why: "If a fan can't book a museum slot or a dinner table in two taps, they'll move to a competitor who offers instant confirmation."
+  },
+  {
+    tag: "Test 5 of 5 · Authorization",
+    title: "Cutting repeat declines",
+    text: "Do you use tokenization and premium-card routing to improve approval rates for international cards?",
+    impact: "International high-value transactions <strong>($1,000+)</strong> are often flagged as risky by older systems, causing false declines.",
+    why: "Unified payment infrastructure recognizes high-spenders across borders. Tokenization cuts repeat declines so you don't lose a high-value sale at the last second."
+  }
+];
+
+const RESULTS = {
+  win: {
+    title: "Match Winner!",
+    emoji: "🏆",
+    cls: "win",
+    msg: "Your business is a powerhouse. You're ready to capture the super-spender segment and provide a world-class experience that builds loyalty far beyond the final whistle."
+  },
+  mid: {
+    title: "In Training",
+    emoji: "🏃",
+    cls: "mid",
+    msg: "You have the basics — but you're leaving money on the table. Focus on adding global payment methods and DCC to capture the 70% international premium spend."
+  },
+  low: {
+    title: "Stuck on the Bench",
+    emoji: "🪑",
+    cls: "low",
+    msg: "You're at risk of significant friction and lost sales. High-value fans may find it too difficult to spend with you. Time to upgrade your payment stack before the crowds arrive."
+  }
+};
+
+/* ---------- STATE ---------- */
+let state = { name:"", email:"", idx:0, answers:[], score:0 };
+// In-memory cache is the primary store (always works). window.storage is a bonus.
+let submissionsCache = [];
+
+/* ---------- HELPERS ---------- */
+const $ = id => document.getElementById(id);
+const show = id => {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  $(id).classList.add('active');
+  $(id).scrollTop = 0;
+};
+const isEmail = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+
+/* ---------- WELCOME ---------- */
+$('startBtn').addEventListener('click', () => {
+  const name = $('name').value.trim();
+  const email = $('email').value.trim();
+  let ok = true;
+  $('err-name').textContent = '';
+  $('err-email').textContent = '';
+  $('name').classList.remove('err');
+  $('email').classList.remove('err');
+  if (name.length < 2) { $('err-name').textContent = 'Please enter your name.'; $('name').classList.add('err'); ok = false; }
+  if (!isEmail(email)) { $('err-email').textContent = 'Please enter a valid email.'; $('email').classList.add('err'); ok = false; }
+  if (!ok) return;
+  state.name = name;
+  state.email = email;
+  state.idx = 0;
+  state.answers = [];
+  state.score = 0;
+  renderQuestion();
+  show('screen-quiz');
+});
+
+/* ---------- QUIZ ---------- */
+function renderQuestion(){
+  const q = QUESTIONS[state.idx];
+  const total = QUESTIONS.length;
+  $('progFill').style.width = `${((state.idx) / total) * 100}%`;
+  $('progText').textContent = `${state.idx + 1} / ${total}`;
+  $('qContent').innerHTML = `
+    <div class="q-tag">${q.tag}</div>
+    <h2 class="q-title">${q.title}</h2>
+    <p class="q-text">${q.text}</p>
+    <div class="answers">
+      <button class="answer yes" data-val="1">
+        <span class="icon">✓</span> Yes
+      </button>
+      <button class="answer no" data-val="0">
+        <span class="icon">✕</span> No
+      </button>
+    </div>
+    <div id="impactSlot"></div>
+  `;
+  $('qContent').querySelectorAll('.answer').forEach(btn => {
+    btn.addEventListener('click', () => onAnswer(parseInt(btn.dataset.val, 10)));
+  });
+}
+
+function onAnswer(val){
+  state.answers.push(val);
+  if (val === 1) state.score += 1;
+  const q = QUESTIONS[state.idx];
+  const isLast = state.idx === QUESTIONS.length - 1;
+  // Disable buttons & highlight choice
+  document.querySelectorAll('.answer').forEach(b => {
+    b.disabled = true;
+    b.style.opacity = parseInt(b.dataset.val, 10) === val ? '1' : '0.4';
+    if (parseInt(b.dataset.val, 10) === val) {
+      b.style.borderColor = val === 1 ? 'var(--adyen-green)' : 'var(--danger)';
+      b.style.background = val === 1 ? 'rgba(0,209,106,0.08)' : 'rgba(255,90,90,0.05)';
+    }
+  });
+  $('progFill').style.width = `${((state.idx + 1) / QUESTIONS.length) * 100}%`;
+
+  $('impactSlot').innerHTML = `
+    <div class="answer-status ${val === 1 ? 'yes' : 'no'}">
+      ${val === 1 ? '✓ You answered Yes' : '✕ You answered No'}
+    </div>
+    <div class="impact" id="impactCard">
+      <div class="impact-row">
+        <div class="impact-label">Impact</div>
+        <div class="impact-text">${q.impact}</div>
+      </div>
+      <div class="impact-row">
+        <div class="impact-label">Why it matters</div>
+        <div class="impact-text">${q.why}</div>
+      </div>
+    </div>
+    <button class="btn btn-primary" id="nextBtn">${isLast ? 'See my result →' : 'Next question →'}</button>
+  `;
+  requestAnimationFrame(() => $('impactCard').classList.add('show'));
+  $('nextBtn').addEventListener('click', () => {
+    if (isLast) {
+      finishQuiz();
+    } else {
+      state.idx += 1;
+      renderQuestion();
+    }
+  });
+  // Auto-scroll impact into view on small screens
+  setTimeout(() => $('impactSlot').scrollIntoView({behavior:'smooth', block:'start'}), 100);
+}
+
+/* ---------- RESULT ---------- */
+async function finishQuiz(){
+  const tier = state.score >= 4 ? 'win' : state.score >= 2 ? 'mid' : 'low';
+  const r = RESULTS[tier];
+  $('trophy').className = `trophy ${r.cls}`;
+  $('trophy').textContent = r.emoji;
+  $('scoreNum').textContent = state.score;
+  $('resultTitle').className = `result-title ${r.cls}`;
+  $('resultTitle').textContent = r.title;
+  $('resultMsg').textContent = r.msg;
+
+  show('screen-result');
+  if (tier === 'win') confetti();
+
+  const id = `${Date.now()}_${Math.random().toString(36).slice(2,8)}`;
+  const record = {
+    id,
+    name: state.name,
+    email: state.email,
+    score: state.score,
+    tier: r.title,
+    answers: state.answers,
+    timestamp: new Date().toISOString(),
+    synced: false
+  };
+  submissionsCache.push(record);
+  queueAdd(record);          // localStorage backup (works on iPad, harmless in artifact preview)
+  flushQueue();              // try to send this + any leftovers
+}
+
+/* ---------- AIRTABLE + RETRY QUEUE ---------- */
+const QUEUE_KEY = 'adyen_quiz_queue_v1';
+
+function queueRead(){
+  try { return JSON.parse(localStorage.getItem(QUEUE_KEY) || '[]'); }
+  catch(e){ return []; }
+}
+function queueWrite(arr){
+  try { localStorage.setItem(QUEUE_KEY, JSON.stringify(arr)); } catch(e){}
+}
+function queueAdd(record){
+  const q = queueRead();
+  if (!q.find(x => x.id === record.id)) q.push(record);
+  queueWrite(q);
+}
+function queueRemove(id){
+  queueWrite(queueRead().filter(x => x.id !== id));
+}
+
+async function postToEndpoint(record){
+  if (!ENDPOINT.url) throw new Error('Endpoint not configured');
+  const headers = { 'Content-Type': 'application/json' };
+  if (ENDPOINT.kioskKey) headers['X-Kiosk-Key'] = ENDPOINT.kioskKey;
+  const res = await fetch(ENDPOINT.url, {
+    method: 'POST',
+    headers,
+    body: JSON.stringify({
+      name:      record.name,
+      email:     record.email,
+      score:     record.score,
+      tier:      record.tier,
+      timestamp: record.timestamp,
+      answers:   record.answers
+    })
+  });
+  if (!res.ok){
+    const txt = await res.text().catch(() => '');
+    throw new Error(`Endpoint ${res.status}: ${txt.slice(0,200)}`);
+  }
+  return res.json().catch(() => ({}));
+}
+
+let flushing = false;
+async function flushQueue(){
+  if (flushing) return;
+  if (!ENDPOINT.url) return;              // queue waits until configured
+  if (!navigator.onLine) return;
+  flushing = true;
+  const q = queueRead();
+  for (const rec of q){
+    try {
+      await postToEndpoint(rec);
+      queueRemove(rec.id);
+      const cached = submissionsCache.find(c => c.id === rec.id);
+      if (cached) cached.synced = true;
+    } catch(e){
+      console.warn('Sync paused:', e.message);
+      break;
+    }
+  }
+  flushing = false;
+}
+
+// Retry on reconnect, on focus, and on a slow timer
+window.addEventListener('online', flushQueue);
+window.addEventListener('focus', flushQueue);
+setInterval(flushQueue, 30000);
+// On boot, restore any queued submissions into the in-memory cache + try sending
+(function bootRestore(){
+  const q = queueRead();
+  for (const rec of q){
+    if (!submissionsCache.find(c => c.id === rec.id)) submissionsCache.push(rec);
+  }
+  flushQueue();
+})();
+
+/* ---------- CONFETTI ---------- */
+function confetti(){
+  const wrap = document.createElement('div');
+  wrap.className = 'confetti';
+  $('screen-result').appendChild(wrap);
+  const colors = ['#00D16A','#34E07C','#F5C046','#FFFFFF'];
+  for (let i = 0; i < 60; i++){
+    const c = document.createElement('div');
+    c.className = 'conf';
+    c.style.left = Math.random() * 100 + '%';
+    c.style.background = colors[Math.floor(Math.random()*colors.length)];
+    c.style.animationDuration = (2 + Math.random() * 2) + 's';
+    c.style.animationDelay = (Math.random() * 0.5) + 's';
+    c.style.transform = `rotate(${Math.random()*360}deg)`;
+    c.style.borderRadius = Math.random() > 0.5 ? '2px' : '50%';
+    wrap.appendChild(c);
+  }
+  setTimeout(() => wrap.remove(), 5000);
+}
+
+/* ---------- RESTART ---------- */
+$('restartBtn').addEventListener('click', () => {
+  state = { name:"", email:"", idx:0, answers:[], score:0 };
+  $('name').value = ''; $('email').value = '';
+  show('screen-welcome');
+});
+$('learnMoreBtn').addEventListener('click', () => {
+  // For demo: same as restart (a kiosk reset). Replace with link in production.
+  state = { name:"", email:"", idx:0, answers:[], score:0 };
+  $('name').value = ''; $('email').value = '';
+  show('screen-welcome');
+});
+
+/* ---------- ADMIN (tap logo 5x) ---------- */
+let logoTaps = 0, logoTimer = null;
+$('logo').addEventListener('click', () => {
+  logoTaps += 1;
+  clearTimeout(logoTimer);
+  logoTimer = setTimeout(() => logoTaps = 0, 1500);
+  if (logoTaps >= 5){
+    logoTaps = 0;
+    openAdmin();
+  }
+});
+
+async function openAdmin(){
+  $('adminOverlay').classList.add('show');
+  await loadSubs();
+}
+$('adminClose').addEventListener('click', () => $('adminOverlay').classList.remove('show'));
+
+async function loadSubs(){
+  const list = $('adminList');
+  list.innerHTML = '<div class="empty">Loading…</div>';
+  // Merge in-memory cache + localStorage queue (dedupe by id)
+  let rows = [...submissionsCache];
+  for (const rec of queueRead()){
+    if (!rows.find(r => r.id === rec.id)) rows.push(rec);
+  }
+
+  if (rows.length === 0){
+    list.innerHTML = '<div class="empty">No submissions yet.</div>';
+    $('subCount').textContent = '';
+    list._rows = [];
+    return;
+  }
+  rows.sort((a,b) => new Date(b.timestamp) - new Date(a.timestamp));
+  const queued = queueRead().length;
+  const meta = ENDPOINT.url
+    ? `(${rows.length} · ${queued ? queued + ' pending sync' : 'all synced'})`
+    : `(${rows.length} · endpoint not configured)`;
+  $('subCount').textContent = meta;
+  list.innerHTML = rows.map(r => {
+    const isQueued = queueRead().some(q => q.id === r.id);
+    const status = !ENDPOINT.url ? '' : (isQueued
+      ? '<span style="color:var(--gold);font-size:11px;margin-left:6px">⏱ pending</span>'
+      : '<span style="color:var(--adyen-green);font-size:11px;margin-left:6px">✓ synced</span>');
+    return `
+    <div class="sub-row">
+      <div class="name">${escapeHtml(r.name)}</div>
+      <div class="email">${escapeHtml(r.email)}</div>
+      <div class="score">${r.score}/5${status}</div>
+      <div class="time">${new Date(r.timestamp).toLocaleString()}</div>
+    </div>`;
+  }).join('');
+  list._rows = rows;
+}
+
+function escapeHtml(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+$('exportBtn').addEventListener('click', () => {
+  const rows = $('adminList')._rows || [];
+  if (rows.length === 0){ alert('No submissions to export.'); return; }
+  const headers = ['timestamp','name','email','score','tier','q1','q2','q3','q4','q5'];
+  const csv = [headers.join(',')].concat(
+    rows.map(r => [
+      r.timestamp, csvCell(r.name), csvCell(r.email), r.score, r.tier,
+      ...((r.answers || []).concat([0,0,0,0,0]).slice(0,5))
+    ].join(','))
+  ).join('\n');
+  const blob = new Blob([csv], {type:'text/csv'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = `adyen-quiz-${new Date().toISOString().slice(0,10)}.csv`;
+  document.body.appendChild(a); a.click(); a.remove();
+  URL.revokeObjectURL(url);
+});
+function csvCell(v){ const s = String(v ?? ''); return /[",\n]/.test(s) ? `"${s.replace(/"/g,'""')}"` : s; }
+
+$('clearBtn').addEventListener('click', async () => {
+  if (!confirm('Delete all local submissions? (Anything already synced to Airtable will remain there.) This cannot be undone.')) return;
+  submissionsCache = [];
+  try { localStorage.removeItem(QUEUE_KEY); } catch(e){}
+  await loadSubs();
+});
+</script>
+</body>
+</html>

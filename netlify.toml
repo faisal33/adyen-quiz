@@ -1,0 +1,10 @@
+[build]
+  publish   = "."
+  functions = "netlify/functions"
+
+# Map /api/submit to the Netlify function so the same frontend
+# code works on both Vercel and Netlify with no changes.
+[[redirects]]
+  from   = "/api/submit"
+  to     = "/.netlify/functions/submit"
+  status = 200
