@@ -10,8 +10,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Familjen+Grotesk:wght@500;600;700&display=swap"
-    rel="stylesheet">
+          href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Familjen+Grotesk:wght@500;600;700&display=swap"
+          rel="stylesheet">
   <style>
     :root {
       --adyen-green: #00D16A;
@@ -49,9 +49,9 @@
 
     body {
       background:
-        radial-gradient(1200px 600px at 80% -10%, rgba(0, 209, 106, 0.18), transparent 60%),
-        radial-gradient(900px 500px at -10% 110%, rgba(0, 209, 106, 0.10), transparent 60%),
-        var(--bg);
+              radial-gradient(1200px 600px at 80% -10%, rgba(0, 209, 106, 0.18), transparent 60%),
+              radial-gradient(900px 500px at -10% 110%, rgba(0, 209, 106, 0.10), transparent 60%),
+              var(--bg);
       position: relative;
     }
 
@@ -62,8 +62,8 @@
       inset: 0;
       pointer-events: none;
       background-image:
-        linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+              linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
       background-size: 80px 80px;
       mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
     }
@@ -836,249 +836,263 @@
 </head>
 
 <body>
-  <div class="app">
-    <!-- TOP BAR -->
-    <div class="topbar">
-      <div class="logo" id="logo" title="Adyen" role="img" aria-label="Adyen">
-        <svg class="logo-svg" viewBox="70 55 226 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path fill="#00D16A"
-            d="M76 76.138h31.724a6.343 6.343 0 0 1 6.345 6.345v31.724H82.345A6.343 6.343 0 0 1 76 107.862V92h15.862v12.69h6.345V85.655H76zM253.655 76.138v38.069h15.862V85.655h6.345v28.552h15.862V82.483a6.343 6.343 0 0 0-6.345-6.345zM164.828 130.069h31.724a6.343 6.343 0 0 0 6.345-6.345V76.138h-15.863v28.552h-6.344V76.138h-15.862v31.724a6.343 6.343 0 0 0 6.344 6.345h15.862v6.345h-22.206zM247.31 114.207h-31.724a6.343 6.343 0 0 1-6.345-6.345V76.138h31.725a6.343 6.343 0 0 1 6.344 6.345v15.862h-15.862v-12.69h-6.345v19.035h22.207zM158.483 60.276v53.931h-31.724a6.343 6.343 0 0 1-6.345-6.345v-25.38a6.343 6.343 0 0 1 6.345-6.344h9.517v28.552h6.345V60.276z" />
-        </svg>
-      </div>
-      <div style="display:flex;align-items:center;gap:16px">
-        <div class="topbar-meta" id="topMeta">Adyen North</div>
-        <button class="admin-link" id="adminBtn" type="button">Admin</button>
-      </div>
+<div class="app">
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="logo" id="logo" title="Adyen" role="img" aria-label="Adyen">
+      <svg class="logo-svg" viewBox="70 55 226 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path fill="#00D16A"
+              d="M76 76.138h31.724a6.343 6.343 0 0 1 6.345 6.345v31.724H82.345A6.343 6.343 0 0 1 76 107.862V92h15.862v12.69h6.345V85.655H76zM253.655 76.138v38.069h15.862V85.655h6.345v28.552h15.862V82.483a6.343 6.343 0 0 0-6.345-6.345zM164.828 130.069h31.724a6.343 6.343 0 0 0 6.345-6.345V76.138h-15.863v28.552h-6.344V76.138h-15.862v31.724a6.343 6.343 0 0 0 6.344 6.345h15.862v6.345h-22.206zM247.31 114.207h-31.724a6.343 6.343 0 0 1-6.345-6.345V76.138h31.725a6.343 6.343 0 0 1 6.344 6.345v15.862h-15.862v-12.69h-6.345v19.035h22.207zM158.483 60.276v53.931h-31.724a6.343 6.343 0 0 1-6.345-6.345v-25.38a6.343 6.343 0 0 1 6.345-6.344h9.517v28.552h6.345V60.276z" />
+      </svg>
     </div>
-
-    <div class="screens">
-
-      <!-- WELCOME -->
-      <section class="screen active" id="screen-welcome">
-        <div class="welcome-wrap">
-          <span class="eyebrow"><span class="dot"></span> World Cup 2026 Readiness</span>
-          <h1 class="hero">Are you ready for the <span class="accent">global soccer surge?</span></h1>
-          <p class="lede">A 5-question diagnostic to see if your business is set up to turn stadium traffic into
-            high-value revenue. Takes about a minute.</p>
-          <div class="form-card">
-            <div class="field">
-              <label for="name">Your name</label>
-              <input id="name" type="text" autocomplete="name" placeholder="Jane Doe" />
-              <div class="field-err" id="err-name"></div>
-            </div>
-            <div class="field">
-              <label for="email">Work email</label>
-              <input id="email" type="email" autocomplete="email" placeholder="jane@company.com" />
-              <div class="field-err" id="err-email"></div>
-            </div>
-            <button class="btn btn-primary" id="startBtn">Start the quiz →</button>
-          </div>
-        </div>
-      </section>
-
-      <!-- QUIZ -->
-      <section class="screen" id="screen-quiz">
-        <div class="quiz-wrap">
-          <div class="progress">
-            <div class="progress-track">
-              <div class="progress-fill" id="progFill"></div>
-            </div>
-            <div class="progress-text" id="progText">1 / 5</div>
-          </div>
-          <div id="qContent"></div>
-        </div>
-      </section>
-
-      <!-- RESULT -->
-      <section class="screen" id="screen-result">
-        <div class="result-wrap">
-          <div class="trophy" id="trophy">🏆</div>
-          <div class="score-label">Your score</div>
-          <div class="score-num"><span id="scoreNum">0</span><span class="total"> / 5</span></div>
-          <h2 class="result-title" id="resultTitle">Match Winner!</h2>
-          <p class="result-msg" id="resultMsg"></p>
-          <div class="result-actions">
-            <button class="btn btn-ghost" id="restartBtn">Take it again</button>
-            <button class="btn btn-primary" id="learnMoreBtn">Learn More →</button>
-          </div>
-        </div>
-      </section>
-
+    <div style="display:flex;align-items:center;gap:16px">
+      <div class="topbar-meta" id="topMeta">Adyen North</div>
+      <button class="admin-link" id="adminBtn" type="button">Admin</button>
     </div>
   </div>
 
-  <!-- ADMIN -->
-  <div class="admin-overlay" id="adminOverlay">
-    <div class="admin-panel">
-      <div class="admin-head">
-        <h3 class="admin-title">Quiz submissions <span id="subCount"
-            style="color:var(--text-mute);font-weight:500;font-size:14px;margin-left:8px"></span></h3>
-        <button class="admin-close" id="adminClose">✕</button>
+  <div class="screens">
+
+    <!-- WELCOME -->
+    <section class="screen active" id="screen-welcome">
+      <div class="welcome-wrap">
+        <span class="eyebrow"><span class="dot"></span> World Cup 2026 Readiness</span>
+        <h1 class="hero">Are you ready for the <span class="accent">global soccer surge?</span></h1>
+        <p class="lede">A 5-question diagnostic to see if your business is set up to turn stadium traffic into
+          high-value revenue. Takes about a minute.</p>
+        <div class="form-card">
+          <div class="field">
+            <label for="name">Your name</label>
+            <input id="name" type="text" autocomplete="name" placeholder="Jane Doe" />
+            <div class="field-err" id="err-name"></div>
+          </div>
+          <div class="field">
+            <label for="email">Work email</label>
+            <input id="email" type="email" autocomplete="email" placeholder="jane@company.com" />
+            <div class="field-err" id="err-email"></div>
+          </div>
+          <button class="btn btn-primary" id="startBtn">Start the quiz →</button>
+        </div>
       </div>
-      <div class="admin-list" id="adminList"></div>
-      <div class="admin-actions">
-        <button class="btn btn-ghost" id="raffleBtn"
-          style="border-color:rgba(0,209,106,0.4);color:var(--adyen-green)">🏆 Pick Winner</button>
-        <button class="btn btn-ghost" id="exportBtn">Export CSV</button>
-        <button class="btn btn-ghost" id="clearBtn" style="border-color:rgba(255,90,90,0.3);color:var(--danger)">Clear
-          all</button>
+    </section>
+
+    <!-- QUIZ -->
+    <section class="screen" id="screen-quiz">
+      <div class="quiz-wrap">
+        <div class="progress">
+          <div class="progress-track">
+            <div class="progress-fill" id="progFill"></div>
+          </div>
+          <div class="progress-text" id="progText">1 / 5</div>
+        </div>
+        <div id="qContent"></div>
+      </div>
+    </section>
+
+    <!-- RESULT -->
+    <section class="screen" id="screen-result">
+      <div class="result-wrap">
+        <div class="trophy" id="trophy">🏆</div>
+        <div class="score-label">Your score</div>
+        <div class="score-num"><span id="scoreNum">0</span><span class="total"> / 7</span></div>
+        <h2 class="result-title" id="resultTitle">Match Winner!</h2>
+        <p class="result-msg" id="resultMsg"></p>
+        <div class="result-actions">
+          <button class="btn btn-ghost" id="restartBtn">Take it again</button>
+          <button class="btn btn-primary" id="learnMoreBtn">Learn More →</button>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<!-- ADMIN -->
+<div class="admin-overlay" id="adminOverlay">
+  <div class="admin-panel">
+    <div class="admin-head">
+      <h3 class="admin-title">Quiz submissions <span id="subCount"
+                                                     style="color:var(--text-mute);font-weight:500;font-size:14px;margin-left:8px"></span></h3>
+      <button class="admin-close" id="adminClose">✕</button>
+    </div>
+    <div class="admin-list" id="adminList"></div>
+    <div class="admin-actions">
+      <button class="btn btn-ghost" id="raffleBtn"
+              style="border-color:rgba(0,209,106,0.4);color:var(--adyen-green)">🏆 Pick Winner</button>
+      <button class="btn btn-ghost" id="exportBtn">Export CSV</button>
+      <button class="btn btn-ghost" id="clearBtn" style="border-color:rgba(255,90,90,0.3);color:var(--danger)">Clear
+        all</button>
+    </div>
+  </div>
+</div>
+
+<div class="admin-overlay" id="raffleOverlay" style="z-index:200">
+  <div class="admin-panel" style="text-align:center;max-width:560px">
+    <div id="raffleCycling"
+         style="min-height:180px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px">
+      <div
+              style="font-size:13px;color:var(--text-mute);font-weight:600;letter-spacing:0.16em;text-transform:uppercase">
+        Drawing winner…</div>
+      <div id="raffleName"
+           style="font-family:'Familjen Grotesk';font-size:36px;font-weight:700;color:var(--adyen-green);transition:opacity .08s">
+        —</div>
+    </div>
+    <div id="raffleResult" style="display:none">
+      <div style="font-size:64px;margin-bottom:8px">🏆</div>
+      <div
+              style="font-size:13px;color:var(--text-mute);font-weight:600;letter-spacing:0.16em;text-transform:uppercase;margin-bottom:8px">
+        Winner</div>
+      <div id="winnerName"
+           style="font-family:'Familjen Grotesk';font-size:42px;font-weight:700;color:var(--adyen-green);margin-bottom:8px">
+      </div>
+      <div id="winnerEmail" style="font-size:16px;color:var(--text-dim);margin-bottom:24px"></div>
+      <div style="display:flex;gap:10px">
+        <button class="btn btn-ghost" id="raffleAgainBtn" style="flex:1">Draw again</button>
+        <button class="btn btn-primary" id="raffleCloseBtn" style="flex:1">Done</button>
       </div>
     </div>
   </div>
+</div>
 
-  <div class="admin-overlay" id="raffleOverlay" style="z-index:200">
-    <div class="admin-panel" style="text-align:center;max-width:560px">
-      <div id="raffleCycling"
-        style="min-height:180px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px">
-        <div
-          style="font-size:13px;color:var(--text-mute);font-weight:600;letter-spacing:0.16em;text-transform:uppercase">
-          Drawing winner…</div>
-        <div id="raffleName"
-          style="font-family:'Familjen Grotesk';font-size:36px;font-weight:700;color:var(--adyen-green);transition:opacity .08s">
-          —</div>
-      </div>
-      <div id="raffleResult" style="display:none">
-        <div style="font-size:64px;margin-bottom:8px">🏆</div>
-        <div
-          style="font-size:13px;color:var(--text-mute);font-weight:600;letter-spacing:0.16em;text-transform:uppercase;margin-bottom:8px">
-          Winner</div>
-        <div id="winnerName"
-          style="font-family:'Familjen Grotesk';font-size:42px;font-weight:700;color:var(--adyen-green);margin-bottom:8px">
-        </div>
-        <div id="winnerEmail" style="font-size:16px;color:var(--text-dim);margin-bottom:24px"></div>
-        <div style="display:flex;gap:10px">
-          <button class="btn btn-ghost" id="raffleAgainBtn" style="flex:1">Draw again</button>
-          <button class="btn btn-primary" id="raffleCloseBtn" style="flex:1">Done</button>
-        </div>
-      </div>
-    </div>
-  </div>
+<script>
+  /* ============================================================
+     BACKEND ENDPOINT CONFIG
+     ============================================================
+     This frontend POSTs to a serverless function which holds the
+     Airtable token securely. Deploy `api/submit.js` (Vercel) or
+     `netlify/functions/submit.js` (Netlify) — see SETUP-GUIDE.md.
 
-  <script>
-    /* ============================================================
-       BACKEND ENDPOINT CONFIG
-       ============================================================
-       This frontend POSTs to a serverless function which holds the
-       Airtable token securely. Deploy `api/submit.js` (Vercel) or
-       `netlify/functions/submit.js` (Netlify) — see SETUP-GUIDE.md.
-    
-       `url`       — path to your function. Default '/api/submit'
-                     works on both Vercel and Netlify (the netlify.toml
-                     redirect is included). Use a full URL if you host
-                     the HTML separately from the function.
-    
-       `kioskKey`  — optional shared secret. If you set the KIOSK_KEY
-                     env var on the server, paste the same value here.
-                     Adds a small barrier against random POSTs.
-       ============================================================ */
-    const ENDPOINT = {
-      url: '/api/submit',
-      kioskKey: ''
-    };
-    /* ============================================================ */
+     `url`       — path to your function. Default '/api/submit'
+                   works on both Vercel and Netlify (the netlify.toml
+                   redirect is included). Use a full URL if you host
+                   the HTML separately from the function.
 
-    /* ---------- DATA ---------- */
-    const QUESTIONS = [
-      {
-        tag: "Test 1 of 5 · Super-Spender",
-        title: "Local vs. Global payment schemes",
-        text: "Have you integrated local payment schemes like China UnionPay (CUP) and Japan Credit Bureau (JCB) into your checkout?",
-        impact: "International visitors spend <strong>70% more</strong> per purchase than locals on apparel. Asian \"super-spenders\" average <strong>$306.40 per transaction</strong> — nearly $188 higher than Europeans.",
-        why: "If your terminal can't process these schemes, you risk losing the highest-margin luxury sales from the most lucrative fan segments."
-      },
-      {
-        tag: "Test 2 of 5 · Price Certainty",
-        title: "Dynamic Currency Conversion (DCC)",
-        text: "Does your payment terminal offer Dynamic Currency Conversion so fans can see the price in their home currency instantly?",
-        impact: "Travelers — especially in the back of a cab or a busy store — hate doing mental math.",
-        why: "DCC turns <strong>browsers into buyers</strong> by providing instant price certainty, removing hesitation and creating a frictionless experience for high-value international shoppers."
-      },
-      {
-        tag: "Test 3 of 5 · Scramble",
-        title: "Booking flexibility under pressure",
-        text: "Can your booking system handle a sudden 40% spike in flexible, last-minute cancellations or changes as fans follow the tournament bracket?",
-        impact: "Demand follows the bracket, not the calendar. A surprise match result can lead to thousands of fans trying to re-book flights or hotels simultaneously.",
-        why: "The merchant who wins the transaction is the one who offers the <strong>least resistance</strong>. Treating payments as part of the logistics stack is essential to capture this volatile revenue."
-      },
-      {
-        tag: "Test 4 of 5 · Downtime Economy",
-        title: "Mobile-first speed",
-        text: "Is your checkout optimized for one-tap mobile payments and fast, same-day digital bookings?",
-        impact: "Between matches, fans spend significantly more on dining and experiences — tourists spend <strong>$10 more per meal</strong> than locals — and most of that is spontaneous, mobile-led.",
-        why: "If a fan can't book a museum slot or a dinner table in two taps, they'll move to a competitor who offers instant confirmation."
-      },
-      {
-        tag: "Test 5 of 5 · Authorization",
-        title: "Cutting repeat declines",
-        text: "Do you use tokenization and premium-card routing to improve approval rates for international cards?",
-        impact: "International high-value transactions <strong>($1,000+)</strong> are often flagged as risky by older systems, causing false declines.",
-        why: "Unified payment infrastructure recognizes high-spenders across borders. Tokenization cuts repeat declines so you don't lose a high-value sale at the last second."
-      }
-    ];
+     `kioskKey`  — optional shared secret. If you set the KIOSK_KEY
+                   env var on the server, paste the same value here.
+                   Adds a small barrier against random POSTs.
+     ============================================================ */
+  const ENDPOINT = {
+    url: '/api/submit',
+    kioskKey: ''
+  };
+  /* ============================================================ */
 
-    const RESULTS = {
-      win: {
-        title: "Match Winner!",
-        emoji: "🏆",
-        cls: "win",
-        msg: "Your business is a powerhouse. You're ready to capture the super-spender segment and provide a world-class experience that builds loyalty far beyond the final whistle."
-      },
-      mid: {
-        title: "In Training",
-        emoji: "🏃",
-        cls: "mid",
-        msg: "You have the basics — but you're leaving money on the table. Focus on adding global payment methods and DCC to capture the 70% international premium spend."
-      },
-      low: {
-        title: "Stuck on the Bench",
-        emoji: "🪑",
-        cls: "low",
-        msg: "You're at risk of significant friction and lost sales. High-value fans may find it too difficult to spend with you. Time to upgrade your payment stack before the crowds arrive."
-      }
-    };
+  /* ---------- DATA ---------- */
+  const QUESTIONS = [
+    {
+      tag: "Test 1 of 7 · Payment Methods",
+      title: "Capturing the highest spenders",
+      text: "Can Asian visitors pay the way they actually prefer — with China UnionPay, JCB, Alipay or WeChat Pay — or are you turning away the tournament's biggest spenders without realising it?",
+      impact: "Asian super-spenders average <strong>$306.40 per transaction</strong> — nearly $188 more than European visitors. Many don't carry traditional cards at all, paying exclusively by QR wallet. International visitors overall spend <strong>70% more</strong> per purchase than locals.",
+      why: "Adyen connects you to China UnionPay, Japan Credit Bureau, Alipay and WeChat Pay through a single integration — no extra hardware, no separate contracts. One change, and you're accessible to every fan walking through your door."
+    },
+    {
+      tag: "Test 2 of 7 · Price Certainty",
+      title: "Removing the mental math barrier",
+      text: "Does your terminal show international fans the price in their own currency at the moment of purchase — or are you asking them to do the conversion in their head and hoping they don't walk away?",
+      impact: "Uncertainty at the price stage kills the sale before it starts. Travelers hate converting currencies in their head — especially in a busy store or the back of a cab under time pressure.",
+      why: "Adyen DCC shows customers their home currency price instantly at checkout across <strong>60+ currencies</strong> on your existing terminals — no extra contract or third-party provider required. It removes the hesitation that turns browsers into abandoned carts — and turns them into buyers instead."
+    },
+    {
+      tag: "Test 3 of 7 · Scramble",
+      title: "Winning the last-minute booking race",
+      text: "When a surprise result triggers thousands of fans scrambling to rebook flights and hotels at the same moment, can your system absorb the spike — and let customers change plans without re-entering payment details?",
+      impact: "A sudden result can collapse the booking window from weeks to minutes. Demand follows the bracket, not the calendar — and the merchant with the most friction loses the transaction every time.",
+      why: "Adyen automatically recognises a shopper's preferred payment methods — whether CUP, JCB or a digital wallet — so customers don't have to re-enter card details under pressure. The merchant who offers the <strong>least resistance</strong> wins the transaction, every time."
+    },
+    {
+      tag: "Test 4 of 7 · Downtime Economy",
+      title: "Capturing the spontaneous spend",
+      text: "Can a fan book your venue or pay for a meal on their phone in two taps — using Apple Pay, Google Pay or a saved card — or do they hit friction and move on to someone easier?",
+      impact: "Most post-match purchases are spontaneous and mobile-led. Tourists spend <strong>$10 more per meal</strong> than locals — but only if the checkout doesn't lose them first. A slow or clunky mobile experience hands that spend straight to a competitor.",
+      why: "Adyen's unified checkout enables Apple Pay, Google Pay and saved cards in a single integration — fans tap once and they're done. Same-day, high-intent transactions captured before they walk away."
+    },
+    {
+      tag: "Test 5 of 7 · Authorization",
+      title: "Hidden declines on valid cards",
+      text: "When a high-value international card comes through your checkout, are you confident it gets approved — or could your system be quietly declining valid transactions and costing you the sale?",
+      impact: "International high-value transactions <strong>($1,000+)</strong> are routinely flagged as suspicious by rigid older systems. The customer gets declined, assumes something is wrong, and doesn't try again. The merchant never knows what they lost.",
+      why: "Adyen's <strong>premium card routing and network tokenization</strong> are built to recognise high-value international cards and maximise approval rates — so a legitimate $2,000 transaction from a Japanese visitor doesn't get treated like fraud."
+    },
+    {
+      tag: "Test 6 of 7 · Reliability",
+      title: "Payments uptime when it matters most",
+      text: "If your WiFi goes down during the tournament's busiest hour, do your terminals stay online — or does your revenue stop the moment the network does?",
+      impact: "Network failures in high-traffic venues during peak hours are more common than most merchants expect. A dropped connection at halftime means <strong>zero revenue</strong> at exactly the worst possible moment.",
+      why: "Adyen terminals with built-in Adyen-managed SIM cards — like the S1F2 and AMS1 — <strong>automatically switch to 4G</strong> if your WiFi drops, with zero manual intervention needed. For deeper protection, Adyen's offline payment mode can be pre-configured to keep transactions processing even with no internet at all."
+    },
+    {
+      tag: "Test 7 of 7 · Risk",
+      title: "Losing sales to your own fraud filters",
+      text: "Have you tuned your fraud settings for the influx of high-value international cards during the tournament — or could your own risk rules be quietly blocking legitimate sales?",
+      impact: "International transactions look different to rigid fraud systems — spending patterns that seem suspicious locally are completely normal for high-value overseas visitors. <strong>Merchants lose the sale without ever knowing why.</strong>",
+      why: "Adyen's risk engine is trained on <strong>global data across thousands of merchants</strong> worldwide, so it recognises legitimate international spending patterns instead of flagging them as threats. A quick risk profile review before the tournament prevents losing sales to your own filters."
+    }
+  ];
 
-    /* ---------- STATE ---------- */
-    let state = { name: "", email: "", idx: 0, answers: [], score: 0 };
-    // In-memory cache is the primary store (always works). window.storage is a bonus.
-    let submissionsCache = [];
+  const RESULTS = {
+    win: {
+      title: "Match Winner!",
+      emoji: "🏆",
+      cls: "win",
+      msg: "Your business is a powerhouse. You're ready to capture the super-spender segment and provide a world-class experience that builds loyalty far beyond the final whistle."
+    },
+    mid: {
+      title: "In Training",
+      emoji: "🏃",
+      cls: "mid",
+      msg: "You have the basics — but you're leaving money on the table. Focus on adding global payment methods and DCC to capture the 70% international premium spend."
+    },
+    low: {
+      title: "Stuck on the Bench",
+      emoji: "🪑",
+      cls: "low",
+      msg: "You're at risk of significant friction and lost sales. High-value fans may find it too difficult to spend with you. Time to upgrade your payment stack before the crowds arrive."
+    }
+  };
 
-    /* ---------- HELPERS ---------- */
-    const $ = id => document.getElementById(id);
-    const show = id => {
-      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-      $(id).classList.add('active');
-      $(id).scrollTop = 0;
-    };
-    const isEmail = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+  /* ---------- STATE ---------- */
+  let state = { name: "", email: "", idx: 0, answers: [], score: 0 };
+  // In-memory cache is the primary store (always works). window.storage is a bonus.
+  let submissionsCache = [];
 
-    /* ---------- WELCOME ---------- */
-    $('startBtn').addEventListener('click', () => {
-      const name = $('name').value.trim();
-      const email = $('email').value.trim();
-      let ok = true;
-      $('err-name').textContent = '';
-      $('err-email').textContent = '';
-      $('name').classList.remove('err');
-      $('email').classList.remove('err');
-      if (name.length < 2) { $('err-name').textContent = 'Please enter your name.'; $('name').classList.add('err'); ok = false; }
-      if (!isEmail(email)) { $('err-email').textContent = 'Please enter a valid email.'; $('email').classList.add('err'); ok = false; }
-      if (!ok) return;
-      state.name = name;
-      state.email = email;
-      state.idx = 0;
-      state.answers = [];
-      state.score = 0;
-      renderQuestion();
-      show('screen-quiz');
-    });
+  /* ---------- HELPERS ---------- */
+  const $ = id => document.getElementById(id);
+  const show = id => {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    $(id).classList.add('active');
+    $(id).scrollTop = 0;
+  };
+  const isEmail = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
 
-    /* ---------- QUIZ ---------- */
-    function renderQuestion() {
-      const q = QUESTIONS[state.idx];
-      const total = QUESTIONS.length;
-      $('progFill').style.width = `${((state.idx) / total) * 100}%`;
-      $('progText').textContent = `${state.idx + 1} / ${total}`;
-      $('qContent').innerHTML = `
+  /* ---------- WELCOME ---------- */
+  $('startBtn').addEventListener('click', () => {
+    const name = $('name').value.trim();
+    const email = $('email').value.trim();
+    let ok = true;
+    $('err-name').textContent = '';
+    $('err-email').textContent = '';
+    $('name').classList.remove('err');
+    $('email').classList.remove('err');
+    if (name.length < 2) { $('err-name').textContent = 'Please enter your name.'; $('name').classList.add('err'); ok = false; }
+    if (!isEmail(email)) { $('err-email').textContent = 'Please enter a valid email.'; $('email').classList.add('err'); ok = false; }
+    if (!ok) return;
+    state.name = name;
+    state.email = email;
+    state.idx = 0;
+    state.answers = [];
+    state.score = 0;
+    renderQuestion();
+    show('screen-quiz');
+  });
+
+  /* ---------- QUIZ ---------- */
+  function renderQuestion() {
+    const q = QUESTIONS[state.idx];
+    const total = QUESTIONS.length;
+    $('progFill').style.width = `${((state.idx) / total) * 100}%`;
+    $('progText').textContent = `${state.idx + 1} / ${total}`;
+    $('qContent').innerHTML = `
     <div class="q-tag">${q.tag}</div>
     <h2 class="q-title">${q.title}</h2>
     <p class="q-text">${q.text}</p>
@@ -1092,28 +1106,28 @@
     </div>
     <div id="impactSlot"></div>
   `;
-      $('qContent').querySelectorAll('.answer').forEach(btn => {
-        btn.addEventListener('click', () => onAnswer(parseInt(btn.dataset.val, 10)));
-      });
-    }
+    $('qContent').querySelectorAll('.answer').forEach(btn => {
+      btn.addEventListener('click', () => onAnswer(parseInt(btn.dataset.val, 10)));
+    });
+  }
 
-    function onAnswer(val) {
-      state.answers.push(val);
-      if (val === 1) state.score += 1;
-      const q = QUESTIONS[state.idx];
-      const isLast = state.idx === QUESTIONS.length - 1;
-      // Disable buttons & highlight choice
-      document.querySelectorAll('.answer').forEach(b => {
-        b.disabled = true;
-        b.style.opacity = parseInt(b.dataset.val, 10) === val ? '1' : '0.4';
-        if (parseInt(b.dataset.val, 10) === val) {
-          b.style.borderColor = val === 1 ? 'var(--adyen-green)' : 'var(--danger)';
-          b.style.background = val === 1 ? 'rgba(0,209,106,0.08)' : 'rgba(255,90,90,0.05)';
-        }
-      });
-      $('progFill').style.width = `${((state.idx + 1) / QUESTIONS.length) * 100}%`;
+  function onAnswer(val) {
+    state.answers.push(val);
+    if (val === 1) state.score += 1;
+    const q = QUESTIONS[state.idx];
+    const isLast = state.idx === QUESTIONS.length - 1;
+    // Disable buttons & highlight choice
+    document.querySelectorAll('.answer').forEach(b => {
+      b.disabled = true;
+      b.style.opacity = parseInt(b.dataset.val, 10) === val ? '1' : '0.4';
+      if (parseInt(b.dataset.val, 10) === val) {
+        b.style.borderColor = val === 1 ? 'var(--adyen-green)' : 'var(--danger)';
+        b.style.background = val === 1 ? 'rgba(0,209,106,0.08)' : 'rgba(255,90,90,0.05)';
+      }
+    });
+    $('progFill').style.width = `${((state.idx + 1) / QUESTIONS.length) * 100}%`;
 
-      $('impactSlot').innerHTML = `
+    $('impactSlot').innerHTML = `
     <div class="answer-status ${val === 1 ? 'yes' : 'no'}">
       ${val === 1 ? '✓ You answered Yes' : '✕ You answered No'}
     </div>
@@ -1129,372 +1143,373 @@
     </div>
     <button class="btn btn-primary" id="nextBtn">${isLast ? 'See my result →' : 'Next question →'}</button>
   `;
-      requestAnimationFrame(() => $('impactCard').classList.add('show'));
-      $('nextBtn').addEventListener('click', () => {
-        if (isLast) {
-          finishQuiz();
-        } else {
-          state.idx += 1;
-          renderQuestion();
-        }
-      });
-      // Auto-scroll impact into view on small screens
-      setTimeout(() => $('impactSlot').scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
-    }
+    requestAnimationFrame(() => $('impactCard').classList.add('show'));
+    $('nextBtn').addEventListener('click', () => {
+      if (isLast) {
+        finishQuiz();
+      } else {
+        state.idx += 1;
+        renderQuestion();
+      }
+    });
+    // Auto-scroll impact into view on small screens
+    setTimeout(() => $('impactSlot').scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+  }
 
-    /* ---------- RESULT ---------- */
-    async function finishQuiz() {
-      const tier = state.score >= 4 ? 'win' : state.score >= 2 ? 'mid' : 'low';
-      const r = RESULTS[tier];
-      $('trophy').className = `trophy ${r.cls}`;
-      $('trophy').textContent = r.emoji;
-      $('scoreNum').textContent = state.score;
-      $('resultTitle').className = `result-title ${r.cls}`;
-      $('resultTitle').textContent = r.title;
-      $('resultMsg').textContent = r.msg;
+  /* ---------- RESULT ---------- */
+  async function finishQuiz() {
+    const pct = state.score / QUESTIONS.length;
+    const tier = pct >= 0.8 ? 'win' : pct >= 0.4 ? 'mid' : 'low';
+    const r = RESULTS[tier];
+    $('trophy').className = `trophy ${r.cls}`;
+    $('trophy').textContent = r.emoji;
+    $('scoreNum').textContent = state.score;
+    $('resultTitle').className = `result-title ${r.cls}`;
+    $('resultTitle').textContent = r.title;
+    $('resultMsg').textContent = r.msg;
 
-      show('screen-result');
-      if (tier === 'win') confetti();
+    show('screen-result');
+    if (tier === 'win') confetti();
 
-      const id = `${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
-      const record = {
-        id,
-        name: state.name,
-        email: state.email,
-        score: state.score,
-        tier: r.title,
-        answers: state.answers,
-        timestamp: new Date().toISOString(),
-        synced: false
-      };
-      submissionsCache.push(record);
-      queueAdd(record);          // localStorage backup (works on iPad, harmless in artifact preview)
-      flushQueue();              // try to send this + any leftovers
-    }
+    const id = `${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+    const record = {
+      id,
+      name: state.name,
+      email: state.email,
+      score: state.score,
+      tier: r.title,
+      answers: state.answers,
+      timestamp: new Date().toISOString(),
+      synced: false
+    };
+    submissionsCache.push(record);
+    queueAdd(record);          // localStorage backup (works on iPad, harmless in artifact preview)
+    flushQueue();              // try to send this + any leftovers
+  }
 
-    /* ---------- AIRTABLE + RETRY QUEUE ---------- */
-    const QUEUE_KEY = 'adyen_quiz_queue_v1';
+  /* ---------- AIRTABLE + RETRY QUEUE ---------- */
+  const QUEUE_KEY = 'adyen_quiz_queue_v1';
 
-    function queueRead() {
-      try { return JSON.parse(localStorage.getItem(QUEUE_KEY) || '[]'); }
-      catch (e) { return []; }
-    }
-    function queueWrite(arr) {
-      try { localStorage.setItem(QUEUE_KEY, JSON.stringify(arr)); } catch (e) { }
-    }
-    function queueAdd(record) {
-      const q = queueRead();
-      if (!q.find(x => x.id === record.id)) q.push(record);
-      queueWrite(q);
-    }
-    function queueRemove(id) {
-      queueWrite(queueRead().filter(x => x.id !== id));
-    }
+  function queueRead() {
+    try { return JSON.parse(localStorage.getItem(QUEUE_KEY) || '[]'); }
+    catch (e) { return []; }
+  }
+  function queueWrite(arr) {
+    try { localStorage.setItem(QUEUE_KEY, JSON.stringify(arr)); } catch (e) { }
+  }
+  function queueAdd(record) {
+    const q = queueRead();
+    if (!q.find(x => x.id === record.id)) q.push(record);
+    queueWrite(q);
+  }
+  function queueRemove(id) {
+    queueWrite(queueRead().filter(x => x.id !== id));
+  }
 
-    async function postToEndpoint(record) {
-      if (!ENDPOINT.url) throw new Error('Endpoint not configured');
-      const headers = { 'Content-Type': 'application/json' };
-      if (ENDPOINT.kioskKey) headers['X-Kiosk-Key'] = ENDPOINT.kioskKey;
-      const res = await fetch(ENDPOINT.url, {
+  async function postToEndpoint(record) {
+    if (!ENDPOINT.url) throw new Error('Endpoint not configured');
+    const headers = { 'Content-Type': 'application/json' };
+    if (ENDPOINT.kioskKey) headers['X-Kiosk-Key'] = ENDPOINT.kioskKey;
+    const res = await fetch(ENDPOINT.url, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify({
+        name: record.name,
+        email: record.email,
+        score: record.score,
+        tier: record.tier,
+        timestamp: record.timestamp,
+        answers: record.answers
+      })
+    });
+    if (!res.ok) {
+      const txt = await res.text().catch(() => '');
+      throw new Error(`Endpoint ${res.status}: ${txt.slice(0, 200)}`);
+    }
+    return res.json().catch(() => ({}));
+  }
+
+  let flushing = false;
+  async function flushQueue() {
+    if (flushing) return;
+    if (!ENDPOINT.url) return;              // queue waits until configured
+    if (!navigator.onLine) return;
+    flushing = true;
+    const q = queueRead();
+    for (const rec of q) {
+      try {
+        await postToEndpoint(rec);
+        queueRemove(rec.id);
+        const cached = submissionsCache.find(c => c.id === rec.id);
+        if (cached) cached.synced = true;
+      } catch (e) {
+        console.warn('Sync paused:', e.message);
+        break;
+      }
+    }
+    flushing = false;
+  }
+
+  // Retry on reconnect, on focus, and on a slow timer
+  window.addEventListener('online', flushQueue);
+  window.addEventListener('focus', flushQueue);
+  setInterval(flushQueue, 30000);
+  // On boot, restore any queued submissions into the in-memory cache + try sending
+  (function bootRestore() {
+    const q = queueRead();
+    for (const rec of q) {
+      if (!submissionsCache.find(c => c.id === rec.id)) submissionsCache.push(rec);
+    }
+    flushQueue();
+  })();
+
+  /* ---------- CONFETTI ---------- */
+  function confetti() {
+    const wrap = document.createElement('div');
+    wrap.className = 'confetti';
+    $('screen-result').appendChild(wrap);
+    const colors = ['#00D16A', '#34E07C', '#F5C046', '#FFFFFF'];
+    for (let i = 0; i < 60; i++) {
+      const c = document.createElement('div');
+      c.className = 'conf';
+      c.style.left = Math.random() * 100 + '%';
+      c.style.background = colors[Math.floor(Math.random() * colors.length)];
+      c.style.animationDuration = (2 + Math.random() * 2) + 's';
+      c.style.animationDelay = (Math.random() * 0.5) + 's';
+      c.style.transform = `rotate(${Math.random() * 360}deg)`;
+      c.style.borderRadius = Math.random() > 0.5 ? '2px' : '50%';
+      wrap.appendChild(c);
+    }
+    setTimeout(() => wrap.remove(), 5000);
+  }
+
+  /* ---------- RESTART ---------- */
+  $('restartBtn').addEventListener('click', () => {
+    state = { name: "", email: "", idx: 0, answers: [], score: 0 };
+    $('name').value = ''; $('email').value = '';
+    show('screen-welcome');
+  });
+  $('learnMoreBtn').addEventListener('click', () => {
+    window.open(
+            'https://www.adyen.com/knowledge-hub/turn-soccer-traffic-into-revenue',
+            '_blank',
+            'noopener,noreferrer'
+    );
+  });
+
+  /* ---------- ADMIN (tap logo 5x) ---------- */
+  let logoTaps = 0, logoTimer = null;
+  $('logo').addEventListener('click', () => {
+    logoTaps += 1;
+    clearTimeout(logoTimer);
+    logoTimer = setTimeout(() => logoTaps = 0, 1500);
+    if (logoTaps >= 5) {
+      logoTaps = 0;
+      openAdmin();
+    }
+  });
+
+  /* ---------- ADMIN ---------- */
+
+  $('adminBtn').addEventListener('click', async () => {
+    const passcode = prompt('Enter admin passcode:');
+    if (!passcode) return;
+
+    try {
+      const res = await fetch('/api/admin-login', {
         method: 'POST',
-        headers,
-        body: JSON.stringify({
-          name: record.name,
-          email: record.email,
-          score: record.score,
-          tier: record.tier,
-          timestamp: record.timestamp,
-          answers: record.answers
-        })
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ passcode })
       });
+
       if (!res.ok) {
-        const txt = await res.text().catch(() => '');
-        throw new Error(`Endpoint ${res.status}: ${txt.slice(0, 200)}`);
-      }
-      return res.json().catch(() => ({}));
-    }
-
-    let flushing = false;
-    async function flushQueue() {
-      if (flushing) return;
-      if (!ENDPOINT.url) return;              // queue waits until configured
-      if (!navigator.onLine) return;
-      flushing = true;
-      const q = queueRead();
-      for (const rec of q) {
-        try {
-          await postToEndpoint(rec);
-          queueRemove(rec.id);
-          const cached = submissionsCache.find(c => c.id === rec.id);
-          if (cached) cached.synced = true;
-        } catch (e) {
-          console.warn('Sync paused:', e.message);
-          break;
-        }
-      }
-      flushing = false;
-    }
-
-    // Retry on reconnect, on focus, and on a slow timer
-    window.addEventListener('online', flushQueue);
-    window.addEventListener('focus', flushQueue);
-    setInterval(flushQueue, 30000);
-    // On boot, restore any queued submissions into the in-memory cache + try sending
-    (function bootRestore() {
-      const q = queueRead();
-      for (const rec of q) {
-        if (!submissionsCache.find(c => c.id === rec.id)) submissionsCache.push(rec);
-      }
-      flushQueue();
-    })();
-
-    /* ---------- CONFETTI ---------- */
-    function confetti() {
-      const wrap = document.createElement('div');
-      wrap.className = 'confetti';
-      $('screen-result').appendChild(wrap);
-      const colors = ['#00D16A', '#34E07C', '#F5C046', '#FFFFFF'];
-      for (let i = 0; i < 60; i++) {
-        const c = document.createElement('div');
-        c.className = 'conf';
-        c.style.left = Math.random() * 100 + '%';
-        c.style.background = colors[Math.floor(Math.random() * colors.length)];
-        c.style.animationDuration = (2 + Math.random() * 2) + 's';
-        c.style.animationDelay = (Math.random() * 0.5) + 's';
-        c.style.transform = `rotate(${Math.random() * 360}deg)`;
-        c.style.borderRadius = Math.random() > 0.5 ? '2px' : '50%';
-        wrap.appendChild(c);
-      }
-      setTimeout(() => wrap.remove(), 5000);
-    }
-
-    /* ---------- RESTART ---------- */
-    $('restartBtn').addEventListener('click', () => {
-      state = { name: "", email: "", idx: 0, answers: [], score: 0 };
-      $('name').value = ''; $('email').value = '';
-      show('screen-welcome');
-    });
-    $('learnMoreBtn').addEventListener('click', () => {
-      window.open(
-        'https://www.adyen.com/knowledge-hub/turn-soccer-traffic-into-revenue',
-        '_blank',
-        'noopener,noreferrer'
-      );
-    });
-
-    /* ---------- ADMIN (tap logo 5x) ---------- */
-    let logoTaps = 0, logoTimer = null;
-    $('logo').addEventListener('click', () => {
-      logoTaps += 1;
-      clearTimeout(logoTimer);
-      logoTimer = setTimeout(() => logoTaps = 0, 1500);
-      if (logoTaps >= 5) {
-        logoTaps = 0;
-        openAdmin();
-      }
-    });
-
-    /* ---------- ADMIN ---------- */
-
-    $('adminBtn').addEventListener('click', async () => {
-      const passcode = prompt('Enter admin passcode:');
-      if (!passcode) return;
-
-      try {
-        const res = await fetch('/api/admin-login', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ passcode })
-        });
-
-        if (!res.ok) {
-          alert('Incorrect passcode.');
-          return;
-        }
-
-        const data = await res.json();
-
-        // Store temporary admin token in this browser session only
-        sessionStorage.setItem('adminToken', data.token);
-
-        openAdmin();
-      } catch (e) {
-        alert('Could not verify admin passcode.');
-      }
-    });
-
-
-
-    async function openAdmin() {
-      $('adminOverlay').classList.add('show');
-      await loadSubs();
-    }
-    $('adminClose').addEventListener('click', () => $('adminOverlay').classList.remove('show'));
-
-    async function loadSubs() {
-      const list = $('adminList');
-      list.innerHTML = '<div class="empty">Loading from Airtable…</div>';
-      let rows = [];
-      try {
-        const adminToken = sessionStorage.getItem('adminToken');
-
-        const headers = {};
-        if (adminToken) headers['X-Admin-Token'] = adminToken;
-
-        const res = await fetch('/api/list', { headers });
-        if (!res.ok) throw new Error('HTTP ' + res.status);
-        const data = await res.json();
-        rows = data.records || [];
-      } catch (e) {
-        list.innerHTML = `<div class="empty">Couldn't reach Airtable: ${escapeHtml(e.message)}</div>`;
+        alert('Incorrect passcode.');
         return;
       }
-      // Merge local pending queue (not yet synced)
-      const pending = queueRead();
-      for (const rec of pending) {
-        if (!rows.find(r => r.email === rec.email && r.timestamp === rec.timestamp)) {
-          rows.push({ ...rec, _pending: true });
-        }
+
+      const data = await res.json();
+
+      // Store temporary admin token in this browser session only
+      sessionStorage.setItem('adminToken', data.token);
+
+      openAdmin();
+    } catch (e) {
+      alert('Could not verify admin passcode.');
+    }
+  });
+
+
+
+  async function openAdmin() {
+    $('adminOverlay').classList.add('show');
+    await loadSubs();
+  }
+  $('adminClose').addEventListener('click', () => $('adminOverlay').classList.remove('show'));
+
+  async function loadSubs() {
+    const list = $('adminList');
+    list.innerHTML = '<div class="empty">Loading from Airtable…</div>';
+    let rows = [];
+    try {
+      const adminToken = sessionStorage.getItem('adminToken');
+
+      const headers = {};
+      if (adminToken) headers['X-Admin-Token'] = adminToken;
+
+      const res = await fetch('/api/list', { headers });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const data = await res.json();
+      rows = data.records || [];
+    } catch (e) {
+      list.innerHTML = `<div class="empty">Couldn't reach Airtable: ${escapeHtml(e.message)}</div>`;
+      return;
+    }
+    // Merge local pending queue (not yet synced)
+    const pending = queueRead();
+    for (const rec of pending) {
+      if (!rows.find(r => r.email === rec.email && r.timestamp === rec.timestamp)) {
+        rows.push({ ...rec, _pending: true });
       }
-      if (rows.length === 0) {
-        list.innerHTML = '<div class="empty">No submissions yet.</div>';
-        $('subCount').textContent = '';
-        list._rows = [];
-        return;
-      }
-      rows.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
-      $('subCount').textContent = `(${rows.length}${pending.length ? ' · ' + pending.length + ' pending' : ''})`;
-      list.innerHTML = rows.map(r => {
-        const status = r._pending
-          ? '<span style="color:var(--gold);font-size:11px;margin-left:6px">⏱ pending</span>'
-          : '<span style="color:var(--adyen-green);font-size:11px;margin-left:6px">✓ synced</span>';
-        return `
+    }
+    if (rows.length === 0) {
+      list.innerHTML = '<div class="empty">No submissions yet.</div>';
+      $('subCount').textContent = '';
+      list._rows = [];
+      return;
+    }
+    rows.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+    $('subCount').textContent = `(${rows.length}${pending.length ? ' · ' + pending.length + ' pending' : ''})`;
+    list.innerHTML = rows.map(r => {
+      const status = r._pending
+              ? '<span style="color:var(--gold);font-size:11px;margin-left:6px">⏱ pending</span>'
+              : '<span style="color:var(--adyen-green);font-size:11px;margin-left:6px">✓ synced</span>';
+      return `
     <div class="sub-row">
       <div class="name">${escapeHtml(r.name)}</div>
       <div class="email">${escapeHtml(r.email)}</div>
-      <div class="score">${r.score}/5${status}</div>
+      <div class="score">${r.score}/7${status}</div>
       <div class="time">${new Date(r.timestamp).toLocaleString()}</div>
     </div>`;
-      }).join('');
-      list._rows = rows;
-    }
-
-
-
-
-    function escapeHtml(s) { return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
-
-    $('exportBtn').addEventListener('click', () => {
-      const rows = $('adminList')._rows || [];
-      if (rows.length === 0) { alert('No submissions to export.'); return; }
-      const headers = ['timestamp', 'name', 'email', 'score', 'tier', 'q1', 'q2', 'q3', 'q4', 'q5'];
-      const csv = [headers.join(',')].concat(
-        rows.map(r => [
-          r.timestamp, csvCell(r.name), csvCell(r.email), r.score, r.tier,
-          ...((r.answers || []).concat([0, 0, 0, 0, 0]).slice(0, 5))
-        ].join(','))
-      ).join('\n');
-      const blob = new Blob([csv], { type: 'text/csv' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url; a.download = `adyen-quiz-${new Date().toISOString().slice(0, 10)}.csv`;
-      document.body.appendChild(a); a.click(); a.remove();
-      URL.revokeObjectURL(url);
-    });
-    function csvCell(v) { const s = String(v ?? ''); return /[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s; }
-
-$('clearBtn').addEventListener('click', async () => {
-  if (!confirm('⚠️ Delete ALL records from Airtable?\n\nThis CANNOT be undone.')) return;
-  if (!confirm('Are you absolutely sure? Type DELETE in the next prompt to confirm.')) return;
-
-  const typed = prompt('Type DELETE to confirm:');
-  if (typed !== 'DELETE') {
-    alert('Cancelled.');
-    return;
+    }).join('');
+    list._rows = rows;
   }
 
-  try {
-    const adminToken = sessionStorage.getItem('adminToken');
 
-    if (!adminToken) {
-      alert('Admin session expired. Please close and reopen the admin panel.');
+
+
+  function escapeHtml(s) { return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
+
+  $('exportBtn').addEventListener('click', () => {
+    const rows = $('adminList')._rows || [];
+    if (rows.length === 0) { alert('No submissions to export.'); return; }
+    const headers = ['timestamp', 'name', 'email', 'score', 'tier', 'q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7'];
+    const csv = [headers.join(',')].concat(
+            rows.map(r => [
+              r.timestamp, csvCell(r.name), csvCell(r.email), r.score, r.tier,
+              ...((r.answers || []).concat([0, 0, 0, 0, 0, 0, 0]).slice(0, 7))
+            ].join(','))
+    ).join('\n');
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = `adyen-quiz-${new Date().toISOString().slice(0, 10)}.csv`;
+    document.body.appendChild(a); a.click(); a.remove();
+    URL.revokeObjectURL(url);
+  });
+  function csvCell(v) { const s = String(v ?? ''); return /[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s; }
+
+  $('clearBtn').addEventListener('click', async () => {
+    if (!confirm('⚠️ Delete ALL records from Airtable?\n\nThis CANNOT be undone.')) return;
+    if (!confirm('Are you absolutely sure? Type DELETE in the next prompt to confirm.')) return;
+
+    const typed = prompt('Type DELETE to confirm:');
+    if (typed !== 'DELETE') {
+      alert('Cancelled.');
       return;
     }
 
-    const headers = {
-      'Content-Type': 'application/json',
-      'X-Admin-Token': adminToken
-    };
+    try {
+      const adminToken = sessionStorage.getItem('adminToken');
 
-    const res = await fetch('/api/clear', {
-      method: 'POST',
-      headers
-    });
-
-    if (!res.ok) throw new Error('HTTP ' + res.status);
-
-    const data = await res.json();
-
-    submissionsCache = [];
-    try { localStorage.removeItem(QUEUE_KEY); } catch (e) {}
-
-    alert(`Deleted ${data.deleted} records.`);
-    await loadSubs();
-  } catch (e) {
-    alert('Failed to clear: ' + e.message);
-  }
-});
-
-    $('raffleBtn').addEventListener('click', async () => {
-      const rows = ($('adminList')._rows || []).filter(r => !r._pending);
-      if (rows.length === 0) { alert('No submissions to draw from.'); return; }
-      $('adminOverlay').classList.remove('show');
-      $('raffleOverlay').classList.add('show');
-      $('raffleResult').style.display = 'none';
-      $('raffleCycling').style.display = 'flex';
-      const winner = rows[Math.floor(Math.random() * rows.length)];
-      // Slot-machine cycle
-      let elapsed = 0;
-      const tick = () => {
-        const r = rows[Math.floor(Math.random() * rows.length)];
-        $('raffleName').textContent = r.name;
-        elapsed += 80;
-        if (elapsed < 2400) setTimeout(tick, 80 + elapsed / 30);
-        else revealWinner(winner);
-      };
-      tick();
-    });
-
-    function revealWinner(w) {
-      $('raffleCycling').style.display = 'none';
-      $('raffleResult').style.display = 'block';
-      $('winnerName').textContent = w.name;
-      $('winnerEmail').textContent = w.email;
-      // Reuse existing confetti
-      const wrap = document.createElement('div');
-      wrap.className = 'confetti';
-      $('raffleOverlay').querySelector('.admin-panel').appendChild(wrap);
-      const colors = ['#00D16A', '#34E07C', '#F5C046', '#FFFFFF'];
-      for (let i = 0; i < 80; i++) {
-        const c = document.createElement('div');
-        c.className = 'conf';
-        c.style.left = Math.random() * 100 + '%';
-        c.style.background = colors[Math.floor(Math.random() * colors.length)];
-        c.style.animationDuration = (2 + Math.random() * 2) + 's';
-        c.style.animationDelay = (Math.random() * 0.5) + 's';
-        c.style.borderRadius = Math.random() > 0.5 ? '2px' : '50%';
-        wrap.appendChild(c);
+      if (!adminToken) {
+        alert('Admin session expired. Please close and reopen the admin panel.');
+        return;
       }
-      setTimeout(() => wrap.remove(), 5000);
+
+      const headers = {
+        'Content-Type': 'application/json',
+        'X-Admin-Token': adminToken
+      };
+
+      const res = await fetch('/api/clear', {
+        method: 'POST',
+        headers
+      });
+
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+
+      const data = await res.json();
+
+      submissionsCache = [];
+      try { localStorage.removeItem(QUEUE_KEY); } catch (e) {}
+
+      alert(`Deleted ${data.deleted} records.`);
+      await loadSubs();
+    } catch (e) {
+      alert('Failed to clear: ' + e.message);
     }
+  });
 
-    $('raffleAgainBtn').addEventListener('click', () => $('raffleBtn').click());
-    $('raffleCloseBtn').addEventListener('click', () => {
-      $('raffleOverlay').classList.remove('show');
-      $('adminOverlay').classList.add('show');
-    });
+  $('raffleBtn').addEventListener('click', async () => {
+    const rows = ($('adminList')._rows || []).filter(r => !r._pending);
+    if (rows.length === 0) { alert('No submissions to draw from.'); return; }
+    $('adminOverlay').classList.remove('show');
+    $('raffleOverlay').classList.add('show');
+    $('raffleResult').style.display = 'none';
+    $('raffleCycling').style.display = 'flex';
+    const winner = rows[Math.floor(Math.random() * rows.length)];
+    // Slot-machine cycle
+    let elapsed = 0;
+    const tick = () => {
+      const r = rows[Math.floor(Math.random() * rows.length)];
+      $('raffleName').textContent = r.name;
+      elapsed += 80;
+      if (elapsed < 2400) setTimeout(tick, 80 + elapsed / 30);
+      else revealWinner(winner);
+    };
+    tick();
+  });
 
-  </script>
+  function revealWinner(w) {
+    $('raffleCycling').style.display = 'none';
+    $('raffleResult').style.display = 'block';
+    $('winnerName').textContent = w.name;
+    $('winnerEmail').textContent = w.email;
+    // Reuse existing confetti
+    const wrap = document.createElement('div');
+    wrap.className = 'confetti';
+    $('raffleOverlay').querySelector('.admin-panel').appendChild(wrap);
+    const colors = ['#00D16A', '#34E07C', '#F5C046', '#FFFFFF'];
+    for (let i = 0; i < 80; i++) {
+      const c = document.createElement('div');
+      c.className = 'conf';
+      c.style.left = Math.random() * 100 + '%';
+      c.style.background = colors[Math.floor(Math.random() * colors.length)];
+      c.style.animationDuration = (2 + Math.random() * 2) + 's';
+      c.style.animationDelay = (Math.random() * 0.5) + 's';
+      c.style.borderRadius = Math.random() > 0.5 ? '2px' : '50%';
+      wrap.appendChild(c);
+    }
+    setTimeout(() => wrap.remove(), 5000);
+  }
+
+  $('raffleAgainBtn').addEventListener('click', () => $('raffleBtn').click());
+  $('raffleCloseBtn').addEventListener('click', () => {
+    $('raffleOverlay').classList.remove('show');
+    $('adminOverlay').classList.add('show');
+  });
+
+</script>
 </body>
 
 </html>
