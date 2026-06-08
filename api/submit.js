@@ -25,7 +25,7 @@ export default async function handler(req, res) {
 
   if (!isString(name, 1, 200))     return res.status(400).json({ error: 'Invalid name' });
   if (!isEmail(email))             return res.status(400).json({ error: 'Invalid email' });
-  if (!isNumber(score, 0, 5))      return res.status(400).json({ error: 'Invalid score' });
+  if (!isNumber(score, 0, 7))     return res.status(400).json({ error: 'Invalid score' });
   if (tier && !isString(tier, 0, 50)) return res.status(400).json({ error: 'Invalid tier' });
 
   // Forward to Airtable
