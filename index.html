@@ -896,7 +896,7 @@
           <div class="progress-track">
             <div class="progress-fill" id="progFill"></div>
           </div>
-          <div class="progress-text" id="progText">1 / 5</div>
+          <div class="progress-text" id="progText">1 / 7</div>
         </div>
         <div id="qContent"></div>
       </div>
@@ -1081,7 +1081,18 @@
     $(id).scrollTop = 0;
   };
   const isEmail = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+  const PERSONAL_DOMAINS = [
+    'gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'live.com',
+    'icloud.com', 'aol.com', 'protonmail.com', 'mail.com', 'ymail.com',
+    'msn.com', 'me.com', 'mac.com', 'googlemail.com', 'proton.me',
+    'yahoo.co.uk', 'yahoo.ca', 'yahoo.fr', 'yahoo.de', 'hotmail.co.uk',
+    'hotmail.ca', 'hotmail.fr', 'tutanota.com', 'zoho.com'
+  ];
 
+  const isWorkEmail = v => {
+    const domain = v.split('@')[1]?.toLowerCase();
+    return domain && !PERSONAL_DOMAINS.includes(domain);
+  };
   /* ---------- WELCOME ---------- */
   $('startBtn').addEventListener('click', () => {
     const name = $('name').value.trim();
@@ -1092,7 +1103,15 @@
     $('name').classList.remove('err');
     $('email').classList.remove('err');
     if (name.length < 2) { $('err-name').textContent = 'Please enter your name.'; $('name').classList.add('err'); ok = false; }
-    if (!isEmail(email)) { $('err-email').textContent = 'Please enter a valid email.'; $('email').classList.add('err'); ok = false; }
+    if (!isEmail(email)) {
+      $('err-email').textContent = 'Please enter a valid email.';
+      $('email').classList.add('err');
+      ok = false;
+    } else if (!isWorkEmail(email)) {
+      $('err-email').textContent = 'Please use your work email address.';
+      $('email').classList.add('err');
+      ok = false;
+    }
     if (!ok) return;
     state.name = name;
     state.email = email;
