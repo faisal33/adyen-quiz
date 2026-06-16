@@ -845,6 +845,58 @@
         display: none
       }
     }
+
+    .live-stats {
+      max-width: 560px;
+      margin: 0 auto 32px;
+      padding: 20px;
+      border: 1px solid rgba(0,209,106,0.25);
+      border-radius: 12px;
+      background: rgba(0,209,106,0.04);
+      text-align: center;
+    }
+
+    .live-stats-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--adyen-green);
+      margin-bottom: 16px;
+    }
+
+    .live-stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .live-stat {
+      background: rgba(0,209,106,0.06);
+      border-radius: 8px;
+      padding: 12px;
+    }
+
+    .live-stat-num {
+      font-family: 'Familjen Grotesk';
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--adyen-green);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .live-stat-desc {
+      font-size: 12px;
+      color: var(--text-dim);
+      line-height: 1.4;
+    }
+
+    .live-stats-source {
+      font-size: 11px;
+      color: var(--text-mute);
+    }
   </style>
 </head>
 
@@ -911,6 +963,29 @@
         <h2 class="result-title" id="resultTitle">Match Winner!</h2>
         <p class="result-msg" id="resultMsg"></p>
         <p class="result-cta" id="resultCta"></p>
+
+        <div class="live-stats">
+          <div class="live-stats-label">🟢 Live from the tournament · Canada · June 10–15</div>
+          <div class="live-stats-grid">
+            <div class="live-stat">
+              <div class="live-stat-num">86%</div>
+              <div class="live-stat-desc">Tourist ATV higher than domestic</div>
+            </div>
+            <div class="live-stat">
+              <div class="live-stat-num">40%</div>
+              <div class="live-stat-desc">Rise in tourist volumes in restaurants</div>
+            </div>
+            <div class="live-stat">
+              <div class="live-stat-num">29%</div>
+              <div class="live-stat-desc">Rise in tourist volumes in clothing stores</div>
+            </div>
+            <div class="live-stat">
+              <div class="live-stat-num">14%</div>
+              <div class="live-stat-desc">Rise in domestic transactions overall</div>
+            </div>
+          </div>
+          <div class="live-stats-source">Source: Adyen transaction data</div>
+        </div>
         <div class="result-actions">
           <button class="btn btn-ghost" id="restartBtn">Take it again</button>
           <button class="btn btn-primary" id="learnMoreBtn">Learn More →</button>
